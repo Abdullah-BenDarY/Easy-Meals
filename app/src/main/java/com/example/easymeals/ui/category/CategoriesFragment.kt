@@ -1,24 +1,25 @@
-package com.example.easymeals
+package com.example.easymeals.ui.category
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.easymeals.databinding.FragmentHomeBinding
+import com.example.easymeals.databinding.FragmentCategoriesBinding
+import com.example.easymeals.databinding.FragmentFavorietsBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
-class HomeFragment : Fragment() {
-    private var _binding: FragmentHomeBinding? = null
+@AndroidEntryPoint
+class CategoriesFragment : Fragment() {
+    private var _binding: FragmentCategoriesBinding? = null
     private val binding get() = _binding!!
-
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentHomeBinding.inflate(inflater)
+        _binding = FragmentCategoriesBinding.inflate(inflater)
         return binding.root
     }
 
@@ -26,5 +27,4 @@ class HomeFragment : Fragment() {
         super.onDestroy()
         _binding = null
     }
-
 }

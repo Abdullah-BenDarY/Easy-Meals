@@ -1,14 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeFragment">
+    android:background="@color/white"
+    tools:context=".ui.home.HomeFragment">
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.06" />
 
-    <!-- TODO: Update blank fragment layout -->
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineright"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.94" />
+
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="home" />
+        android:id="@+id/txtHome"
+        style="@style/primaryTxtView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/home"
+        app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        app:icon="@drawable/ic_search"
+        app:iconGravity="end"
+        app:iconSize="@dimen/_30sdp"
+        app:iconTint="@color/gray"
+        app:layout_constraintBottom_toBottomOf="@+id/txtHome"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/txtHome" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/txtHome"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/scrollGuidelineLeft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.06" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/scrollGuidelineright"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.94" />
+
+            <TextView
+                android:id="@+id/tvWouldLikeToEat"
+                style="@style/headerTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/what_would_you_like_to_eat"
+                app:layout_constraintStart_toEndOf="@id/scrollGuidelineLeft"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardRandomMeal"
+                style="@style/cardView"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_180sdp"
+                app:layout_constraintEnd_toStartOf="@+id/scrollGuidelineright"
+                app:layout_constraintStart_toEndOf="@+id/scrollGuidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/tvWouldLikeToEat">
+
+                <ImageView
+                    android:id="@+id/imgRandomMeal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/primary"
+                    android:scaleType="centerCrop" />
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/tvOverPopItems"
+                style="@style/secondryTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/over_popular_items"
+                app:layout_constraintStart_toEndOf="@id/scrollGuidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/cardRandomMeal" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvPopItems"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_130sdp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toStartOf="@id/scrollGuidelineright"
+                app:layout_constraintStart_toEndOf="@id/scrollGuidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/tvOverPopItems" />
+
+            <TextView
+                android:id="@+id/tvCategory"
+                style="@style/secondryTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/category"
+                app:layout_constraintStart_toEndOf="@id/scrollGuidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/rvPopItems" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardRvCategory"
+                style="@style/cardView"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_130sdp"
+                app:layout_constraintEnd_toStartOf="@+id/scrollGuidelineright"
+                app:layout_constraintStart_toEndOf="@+id/scrollGuidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/tvCategory">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvCategory"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:scrollbars="none"
+                    app:layout_constraintEnd_toStartOf="@id/guidelineright"
+                    app:layout_constraintStart_toEndOf="@id/guidelineLeft" />
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

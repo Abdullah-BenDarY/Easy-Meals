@@ -1,4 +1,4 @@
-package com.example.easymeals
+package com.example.easymeals.ui.favoriets
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.easymeals.databinding.FragmentFavorietsBinding
 import com.example.easymeals.databinding.FragmentHomeBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class FavorietsFragment : Fragment() {
     private var _binding: FragmentFavorietsBinding? = null
     private val binding get() = _binding!!

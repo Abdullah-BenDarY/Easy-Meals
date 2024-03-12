@@ -8,17 +8,16 @@ import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.example.easymeals.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class  MainActivity : AppCompatActivity() {
 
-    private var _binding: ActivityMainBinding? = null
-    private val binding get() = _binding!!
-
-
+     var binding:ActivityMainBinding? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding?.root)
         setupNavController()
     }
 
@@ -33,6 +32,6 @@ class  MainActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        _binding = null
+        binding = null
     }
 }
