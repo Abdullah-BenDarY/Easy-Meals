@@ -42,7 +42,7 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.bind(view)
         homeViewModel.getRandomMeal()
         observe()
-        onClicks()
+//        onClicks()
     }
 
     private fun onClicks() {
@@ -56,12 +56,11 @@ class HomeFragment : Fragment() {
         homeViewModel.mutableLiveData.observe(viewLifecycleOwner) { meal ->
             when (meal) {
                 is Resource.Success -> {
-                    binding.txtHome.text="djfghdfkn"
                     meal.data?.let {meal ->
                         showToast(meal.idMeal)
-//                            Glide.with(binding.root.context)
-//                                .load(meal.strMealThumb)
-//                                .into(binding.imgRandomMeal)
+                            Glide.with(binding.root.context)
+                                .load(meal.strMealThumb)
+                                .into(binding.imgRandomMeal)
                         }
                 }
 

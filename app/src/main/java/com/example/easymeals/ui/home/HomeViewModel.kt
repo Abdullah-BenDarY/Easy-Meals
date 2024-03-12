@@ -26,7 +26,7 @@ class HomeViewModel @Inject constructor(val repository: Repository) : ViewModel(
             try {
                 val response = repository.getRandom()
                 if (response.meals.isNotEmpty()) {
-                    _mutableLiveData.postValue(Resource.Success(response.meals))
+                    _mutableLiveData.postValue(Resource.Success(response.meals.get(0)))
                 }else {
                     _mutableLiveData.postValue(Resource.Error(response.toString()))
                 }
