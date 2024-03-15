@@ -1,7 +1,6 @@
 package com.example.easymeals.repo
 
 
-import com.example.easymeals.data.ModelRandomMeal
 import com.example.easymeals.network.ApiCalls
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -12,8 +11,8 @@ class Repository @Inject constructor(private val api: ApiCalls){
 
     suspend fun getRandom() =
       api.getRandomMeal()
-    suspend fun getMealDetails(mealId : String) =
-      api.deatMealDetails(mealId)
+    suspend fun getMealDetails(mealId : Int) =
+      api.getMealDetails(mealId)
 
 }
 

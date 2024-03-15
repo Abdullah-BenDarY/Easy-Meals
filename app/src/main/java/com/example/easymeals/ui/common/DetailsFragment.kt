@@ -1,19 +1,25 @@
 package com.example.easymeals.ui.common
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import androidx.compose.ui.unit.IntRect
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
+import com.example.easymeals.R
 import com.example.easymeals.base.BaseFragment
 import com.example.easymeals.data.Meal
 import com.example.easymeals.databinding.FragmentDetailsBinding
 import com.example.medicalapp.util.Resource
 import com.example.medicalapp.util.showToast
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class DetailsFragment : BaseFragment<FragmentDetailsBinding>(FragmentDetailsBinding::inflate) {
 
     private val detailsViewModel: DetailsViewModel by viewModels()
+    private lateinit var uriVideo :String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +34,12 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(FragmentDetailsBind
         observe()
     }
     override fun onClicks() {
-
+        binding.apply {
+            btnVideo.setOnClickListener {
+                val intent = Intent(Intent.ACTION_VIEW , Uri.parse(uriVideo))
+                startActivity(intent)
+            }
+        }
 
     }
     override fun observe() {
@@ -39,6 +50,8 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(FragmentDetailsBind
                     finishLoading()
                     it.data?.let {
                         setTextsInViews(it)
+                        uriVideo = it.strYoutube
+
                     }
                 }
                 is Resource.Error -> {
@@ -70,23 +83,22 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(FragmentDetailsBind
         }
     }
     private fun setTextsInViews(meal: Meal) {
-//        this.dtMeal = meal
-//         val ytUrl = meal.strYoutube
         binding.apply {
             binding.apply {
                 Glide.with(binding.root.context)
                     .load(meal.strMealThumb)
                     .into(binding.imgMeal)
                 collapsingToolBar.title = meal.strMeal
+                collapsingToolBar.setCollapsedTitleTextColor(resources.getColor(R.color.white))
+                collapsingToolBar.setExpandedTitleColor(resources.getColor(R.color.white))
                 tvAreaName.text = meal.strArea
                 tvCategoryName.text = meal.strCategory
                 tvInstrutionsDetails.text = meal.strInstructions
-//              btnVideo. = meal.strYoutube
             }
         }
     }
 
-    // todo    save to faviriets fun // un save // intent to youtube fun
+    // TODO    save to faviriets fun // unSave
 
 
 }

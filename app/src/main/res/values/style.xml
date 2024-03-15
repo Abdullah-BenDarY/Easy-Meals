@@ -51,5 +51,7 @@
         <item name="android:textColor">@color/black</item>
         <item name="fontFamily">@font/myfont</item>
         <item name="android:paddingStart">@dimen/_13sdp</item>
+        <item name="android:paddingEnd">@dimen/_13sdp</item>
+
     </style>
 </resources>

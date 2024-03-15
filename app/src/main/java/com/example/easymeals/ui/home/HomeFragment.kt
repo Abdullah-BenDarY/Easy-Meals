@@ -16,6 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
 
     private val homeViewModel: HomeViewModel by viewModels()
+    private var ide : Int? = null
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -29,8 +30,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         binding.apply {
             imgRandomMeal.setOnClickListener {
                 findNavController().navigate(
-                    HomeFragmentDirections.actionHomeFragmentToDetailsFragment(it.id.toString())
-                )
+                    HomeFragmentDirections.actionHomeFragmentToDetailsFragment(ide!!))
             }
         }
     }
@@ -44,6 +44,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                             .load(meal.strMealThumb)
                             .into(binding.imgRandomMeal)
                         binding.randomMealName.text = meal.strMeal
+                        ide = meal.idMeal.toInt()
                     }
                 }
 

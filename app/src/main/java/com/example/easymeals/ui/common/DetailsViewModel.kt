@@ -6,17 +6,20 @@ import androidx.lifecycle.viewModelScope
 import com.example.easymeals.data.Meal
 import com.example.easymeals.repo.Repository
 import com.example.medicalapp.util.Resource
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class DetailsViewModel @Inject constructor(private val repository: Repository) : ViewModel() {
+
 
     private var _mutableLiveData = MutableLiveData<Resource<Meal>>()
     val mutableLiveData get() = _mutableLiveData
 
 
-    fun getRandomMeal(mealId: String) {
+    fun getRandomMeal(mealId: Int) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val response = repository.getMealDetails(mealId)
@@ -34,3 +37,36 @@ class DetailsViewModel @Inject constructor(private val repository: Repository) :
 
 
 }
+
+//import androidx.lifecycle.MutableLiveData
+//import androidx.lifecycle.ViewModel
+//import androidx.lifecycle.viewModelScope
+//import com.example.easymeals.data.Meal
+//import com.example.easymeals.repo.Repository
+//import com.example.medicalapp.util.Resource
+//import kotlinx.coroutines.Dispatchers
+//import kotlinx.coroutines.launch
+//import javax.inject.Inject
+//
+//class DetailsViewModel @Inject constructor(private val repository: Repository) : ViewModel() {
+//
+//    private var _mutableLiveData = MutableLiveData<Resource<Meal>>()
+//    val mutableLiveData get() = _mutableLiveData
+//
+//    fun getRandomMeal(mealId: String) {
+//        viewModelScope.launch(Dispatchers.IO) {
+//            try {
+//                val response = repository.getRandom()
+//                val meal = response.meals.firstOrNull { it.idMeal == mealId }
+//                if (meal != null) {
+//                    _mutableLiveData.postValue(Resource.Success(meal))
+//                } else {
+//                    _mutableLiveData.postValue(Resource.Error(response.toString()))
+//                }
+//
+//            } catch (e: Exception) {
+//                _mutableLiveData.postValue(Resource.Error("An error occurred: ${e.message}"))
+//            }
+//        }
+//    }
+//}
