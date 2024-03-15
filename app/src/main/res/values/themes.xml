@@ -13,6 +13,13 @@
         <item name="android:statusBarColor" tools:targetApi="l">@color/white</item>
         <item name="android:windowLightStatusBar" tools:ignore="NewApi">true</item>
     </style>
+    <style name="CircularShapeOverlay">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+        <item name="backgroundTint">@color/accent</item>
+        <item name="tint">@color/white</item>
+    </style>
 
     <style name="Theme.EasyMeals" parent="Base.Theme.EasyMeals" />
+
 </resources>

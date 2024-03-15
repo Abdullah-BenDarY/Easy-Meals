@@ -12,6 +12,8 @@ class Repository @Inject constructor(private val api: ApiCalls){
 
     suspend fun getRandom() =
       api.getRandomMeal()
+    suspend fun getMealDetails(mealId : String) =
+      api.deatMealDetails(mealId)
 
 }
 

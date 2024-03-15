@@ -13,7 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class  MainActivity : AppCompatActivity() {
 
-     var binding:ActivityMainBinding? = null
+     private var binding:ActivityMainBinding ?= null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -22,9 +22,11 @@ class  MainActivity : AppCompatActivity() {
     }
 
     private fun setupNavController(){
-        val navController = findNavController(R.id.fragmentView)
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.btmNav)
+        val navController = findNavController(R.id.fragmentView)
         bottomNavigationView.setupWithNavController(navController)
+//        NavigationUI.setupWithNavController(bottomNavigationView,navController)
+
 
     }
 

@@ -5,26 +5,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.easymeals.base.BaseFragment
 import com.example.easymeals.databinding.FragmentCategoriesBinding
+import com.example.easymeals.databinding.FragmentDetailsBinding
 import com.example.easymeals.databinding.FragmentFavorietsBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class CategoriesFragment : Fragment() {
-    private var _binding: FragmentCategoriesBinding? = null
-    private val binding get() = _binding!!
+class CategoriesFragment :BaseFragment<FragmentCategoriesBinding>(FragmentCategoriesBinding::inflate) {
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentCategoriesBinding.inflate(inflater)
-        return binding.root
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
-    }
+
 }
