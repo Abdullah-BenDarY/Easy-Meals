@@ -40,8 +40,8 @@ class HomeViewModel @Inject constructor(private val repository: Repository) : Vi
         viewModelScope.launch ( IO ){
             try {
                 val response = repository.getPopularMeal(category)
-                if (response.pMeals.isNotEmpty()) {
-                    _popularMealsLiveData.postValue(Resource.Success(response.pMeals))
+                if (response.meals.isNotEmpty()) {
+                    _popularMealsLiveData.postValue(Resource.Success(response.meals))
                 }else {
                     _popularMealsLiveData.postValue(Resource.Error(response.toString()))
                 }

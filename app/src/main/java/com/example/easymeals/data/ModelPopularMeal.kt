@@ -1,7 +1,7 @@
 package com.example.easymeals.data
 
 data class ModelPopularMeal(
-    val pMeals: List<PMeal>
+    val meals: List<PMeal>
 )
 
 data class PMeal(
@@ -9,3 +9,4 @@ data class PMeal(
     val strMeal: String,
     val strMealThumb: String
 )
+

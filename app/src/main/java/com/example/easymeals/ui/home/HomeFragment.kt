@@ -28,7 +28,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         homeViewModel.getPupularMeals(SEA_FOOD)
         observe()
         onClicks()
-        binding.rvPopItems.layoutManager = LinearLayoutManager(requireContext())
     }
 
     private var ide: Int? = null
