@@ -18,6 +18,7 @@
         <item name="cornerSize">50%</item>
         <item name="backgroundTint">@color/accent</item>
         <item name="tint">@color/white</item>
+        <item name="iconGravity"></item>
     </style>
 
     <style name="Theme.EasyMeals" parent="Base.Theme.EasyMeals" />

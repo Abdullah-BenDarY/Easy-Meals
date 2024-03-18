@@ -86,9 +86,6 @@
                 app:layout_constraintEnd_toStartOf="@+id/scrollGuidelineright"
                 app:layout_constraintStart_toEndOf="@+id/scrollGuidelineLeft"
                 app:layout_constraintTop_toBottomOf="@id/tvWouldLikeToEat">
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
 
                 <ImageView
                     android:id="@+id/imgRandomMeal"
@@ -96,18 +93,7 @@
                     android:layout_height="match_parent"
                     android:background="@color/primary"
                     android:scaleType="centerCrop" />
-                <TextView
-                    android:id="@+id/randomMealName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    style="@style/mealName"
-                    android:text="ljsngkjlsngsl"
-                    />
-                </androidx.constraintlayout.widget.ConstraintLayout>
+
             </androidx.cardview.widget.CardView>
 
 
@@ -123,8 +109,10 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvPopItems"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/_130sdp"
+                android:layout_height="0dp"
                 android:orientation="horizontal"
+                tools:listitem="@layout/item_popular"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toStartOf="@id/scrollGuidelineright"
                 app:layout_constraintStart_toEndOf="@id/scrollGuidelineLeft"
                 app:layout_constraintTop_toBottomOf="@id/tvOverPopItems" />

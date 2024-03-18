@@ -4,7 +4,6 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
-import androidx.compose.ui.unit.IntRect
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.example.easymeals.R

@@ -1,10 +1,10 @@
 package com.example.easymeals.ui.home
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.easymeals.data.Meal
+import com.example.easymeals.data.PMeal
 import com.example.easymeals.repo.Repository
 import com.example.medicalapp.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,22 +14,39 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(private val repository: Repository) : ViewModel() {
-    private var _mutableLiveData = MutableLiveData<Resource<Meal>>()
-    val mutableLiveData get() = _mutableLiveData
+    private var _randomMealLiveData = MutableLiveData<Resource<Meal>>()
+    val randomMealLiveData get() = _randomMealLiveData
 
+    private var _popularMealsLiveData = MutableLiveData<Resource<List<PMeal>?>>()
+    val popularMealsLiveData get() = _popularMealsLiveData
 
         fun getRandomMeal() {
         viewModelScope.launch ( IO ){
             try {
                 val response = repository.getRandom()
                 if (response.meals.isNotEmpty()) {
-                    _mutableLiveData.postValue(Resource.Success(response.meals[0]))
+                    _randomMealLiveData.postValue(Resource.Success(response.meals[0]))
                 }else {
-                    _mutableLiveData.postValue(Resource.Error(response.toString()))
+                    _randomMealLiveData.postValue(Resource.Error(response.toString()))
                 }
 
             } catch (e: Exception) {
-            _mutableLiveData.postValue(Resource.Error("An error occurred: ${e.message}"))
+            _randomMealLiveData.postValue(Resource.Error("An error occurred: ${e.message}"))
+            }
+        }
+    }
+
+    fun getPupularMeals(category : String) {
+        viewModelScope.launch ( IO ){
+            try {
+                val response = repository.getPopularMeal(category)
+                if (response.pMeals.isNotEmpty()) {
+                    _popularMealsLiveData.postValue(Resource.Success(response.pMeals))
+                }else {
+                    _popularMealsLiveData.postValue(Resource.Error(response.toString()))
+                }
+            } catch (e: Exception) {
+                _popularMealsLiveData.postValue(Resource.Error("An error occurred: ${e.message}"))
             }
         }
     }

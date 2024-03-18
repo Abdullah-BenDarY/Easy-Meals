@@ -47,12 +47,17 @@
         app:layout_anchorGravity="bottom|end"
         app:shapeAppearanceOverlay="@style/CircularShapeOverlay" />
 
+
+    <!--        app:layout_anchor="@id/btnAddToFav"-->
+    <!--        app:layout_anchorGravity="bottom|end"-->
+    <!--        android:layout_gravity="bottom"-->
+
+
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -124,23 +129,30 @@
                 android:text="@string/instructions"
                 app:layout_constraintStart_toStartOf="@id/tvInstrutions"
                 app:layout_constraintTop_toBottomOf="@id/tvInstrutions"
-
                 tools:text="Egypt" />
+
+            <TextView
+                android:id="@+id/btn_video"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:drawableLeftCompat="@drawable/ic_video"
+                android:drawablePadding="@dimen/_4sdp"
+                android:text="@string/youtube"
+                android:textColor="@color/red"
+                android:fontFamily="@font/myfont"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:paddingTop="@dimen/_7sdp"
+                app:layout_constraintStart_toEndOf="@id/tvInstrutions"
+                app:layout_constraintTop_toTopOf="@id/tvInstrutions"
+                app:layout_constraintBottom_toBottomOf="@id/tvInstrutions"
+                app:drawableTint="@color/red" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btn_video"
-        style="@style/CircularShapeOverlay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_video"
-        android:layout_marginBottom="@dimen/_10sdp"
-        app:shapeAppearanceOverlay="@style/CircularShapeOverlay"
-        android:layout_gravity="bottom|center"/>
+
     <com.google.android.material.progressindicator.LinearProgressIndicator
         android:id="@+id/progresBar"
         android:layout_width="match_parent"
