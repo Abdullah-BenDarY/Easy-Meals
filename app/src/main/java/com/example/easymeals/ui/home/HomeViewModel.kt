@@ -3,8 +3,9 @@ package com.example.easymeals.ui.home
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.easymeals.data.Meal
-import com.example.easymeals.data.PMeal
+import com.example.easymeals.pojo.Category
+import com.example.easymeals.pojo.Meal
+import com.example.easymeals.pojo.PMeal
 import com.example.easymeals.repo.Repository
 import com.example.medicalapp.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,6 +20,10 @@ class HomeViewModel @Inject constructor(private val repository: Repository) : Vi
 
     private var _popularMealsLiveData = MutableLiveData<Resource<List<PMeal>?>>()
     val popularMealsLiveData get() = _popularMealsLiveData
+
+    private var _allCategoriesLiveData = MutableLiveData<Resource<List<Category>?>>()
+    val allCategoriesLiveData get() = _allCategoriesLiveData
+
 
         fun getRandomMeal() {
         viewModelScope.launch ( IO ){
@@ -47,6 +52,21 @@ class HomeViewModel @Inject constructor(private val repository: Repository) : Vi
                 }
             } catch (e: Exception) {
                 _popularMealsLiveData.postValue(Resource.Error("An error occurred: ${e.message}"))
+            }
+        }
+    }
+
+    fun getAllCategories() {
+        viewModelScope.launch ( IO ){
+            try {
+                val response = repository.getAllCategories()
+                if (response.categories.isNotEmpty()) {
+                    _allCategoriesLiveData.postValue(Resource.Success(response.categories))
+                }else {
+                    _allCategoriesLiveData.postValue(Resource.Error(response.toString()))
+                }
+            } catch (e: Exception) {
+                _allCategoriesLiveData.postValue(Resource.Error("An error occurred: ${e.message}"))
             }
         }
     }

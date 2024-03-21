@@ -8,7 +8,7 @@ import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.example.easymeals.R
 import com.example.easymeals.base.BaseFragment
-import com.example.easymeals.data.Meal
+import com.example.easymeals.pojo.Meal
 import com.example.easymeals.databinding.FragmentDetailsBinding
 import com.example.medicalapp.util.Resource
 import com.example.medicalapp.util.showToast
@@ -23,7 +23,8 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(FragmentDetailsBind
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val myId = DetailsFragmentArgs.fromBundle(requireArguments()).id
-        detailsViewModel.getRandomMeal(myId)
+        detailsViewModel.getMealsDetails(myId)
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -48,7 +49,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(FragmentDetailsBind
                 is Resource.Success -> {
                     finishLoading()
                     it.data?.let {
-                        setTextsInViews(it)
+                        setContentInViews(it)
                         uriVideo = it.strYoutube
 
                     }
@@ -61,7 +62,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(FragmentDetailsBind
             }
         }
     }
-    private fun showLoading() {
+    override fun showLoading() {
         binding.apply {
             progresBar.visibility = View.VISIBLE
             btnAddToFav.visibility = View.GONE
@@ -71,7 +72,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(FragmentDetailsBind
             tvInstrutionsDetails.visibility = View.INVISIBLE
         }
     }
-    private fun finishLoading() {
+    override fun finishLoading() {
         binding.apply {
             progresBar.visibility = View.INVISIBLE
             btnAddToFav.visibility = View.VISIBLE
@@ -81,7 +82,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(FragmentDetailsBind
             tvInstrutionsDetails.visibility = View.VISIBLE
         }
     }
-    private fun setTextsInViews(meal: Meal) {
+    private fun setContentInViews(meal: Meal) {
         binding.apply {
             binding.apply {
                 Glide.with(binding.root.context)
@@ -97,7 +98,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(FragmentDetailsBind
         }
     }
 
-    // TODO    save to faviriets fun // unSave
+    // TODO    save // unSave to faviriets fun
 
 
 }

@@ -7,6 +7,16 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     tools:context=".ui.home.HomeFragment">
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/progresBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        app:layout_anchorGravity="bottom"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineLeft"
         android:layout_width="wrap_content"
@@ -108,8 +118,8 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvPopItems"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 tools:listitem="@layout/item_popular"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -130,7 +140,7 @@
                 android:id="@+id/cardRvCategory"
                 style="@style/cardView"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/_130sdp"
+                android:layout_height="match_parent"
                 app:layout_constraintEnd_toStartOf="@+id/scrollGuidelineright"
                 app:layout_constraintStart_toEndOf="@+id/scrollGuidelineLeft"
                 app:layout_constraintTop_toBottomOf="@id/tvCategory">
@@ -139,10 +149,14 @@
                     android:id="@+id/rvCategory"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal"
+                    android:orientation="vertical"
                     android:scrollbars="none"
-                    app:layout_constraintEnd_toStartOf="@id/guidelineright"
-                    app:layout_constraintStart_toEndOf="@id/guidelineLeft" />
+                    android:layout_gravity="center"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:spanCount="3"
+                    app:layout_constraintEnd_toStartOf="@id/cardRvCategory"
+                    tools:listitem="@layout/item_category"
+                    app:layout_constraintStart_toEndOf="@id/cardRvCategory" />
             </androidx.cardview.widget.CardView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

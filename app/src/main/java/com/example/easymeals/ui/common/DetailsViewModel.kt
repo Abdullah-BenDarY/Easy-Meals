@@ -3,7 +3,7 @@ package com.example.easymeals.ui.common
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.easymeals.data.Meal
+import com.example.easymeals.pojo.Meal
 import com.example.easymeals.repo.Repository
 import com.example.medicalapp.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,7 +19,7 @@ class DetailsViewModel @Inject constructor(private val repository: Repository) :
     val mutableLiveData get() = _mutableLiveData
 
 
-    fun getRandomMeal(mealId: Int) {
+    fun getMealsDetails(mealId: Int) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val response = repository.getMealDetails(mealId)

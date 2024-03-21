@@ -1,4 +1,4 @@
-package com.example.easymeals.data
+package com.example.easymeals.pojo
 
 data class ModelPopularMeal(
     val meals: List<PMeal>

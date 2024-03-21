@@ -1,9 +1,7 @@
 package com.example.easymeals.repo
 
 
-import com.example.easymeals.data.PMeal
 import com.example.easymeals.network.ApiCalls
-import retrofit2.Response
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -19,5 +17,10 @@ class Repository @Inject constructor(private val api: ApiCalls){
     suspend fun getPopularMeal(category: String )=
         api.getPopularMeals(category)
 
+    suspend fun getAllCategories() =
+        api.getAllCategories()
+
+    suspend fun getMealsByCategory(category: String )=
+        api.getMealsByCategory(category)
 }
 

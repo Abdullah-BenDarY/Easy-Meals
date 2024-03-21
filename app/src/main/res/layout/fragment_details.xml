@@ -16,8 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:contentScrim="@color/accent"
-            app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
-            app:title="MealName">
+            app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
 
             <ImageView
                 android:id="@+id/imgMeal"
@@ -46,11 +45,6 @@
         app:layout_anchor="@id/appBar"
         app:layout_anchorGravity="bottom|end"
         app:shapeAppearanceOverlay="@style/CircularShapeOverlay" />
-
-
-    <!--        app:layout_anchor="@id/btnAddToFav"-->
-    <!--        app:layout_anchorGravity="bottom|end"-->
-    <!--        android:layout_gravity="bottom"-->
 
 
     <androidx.core.widget.NestedScrollView
@@ -128,8 +122,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/instructions"
                 app:layout_constraintStart_toStartOf="@id/tvInstrutions"
-                app:layout_constraintTop_toBottomOf="@id/tvInstrutions"
-                tools:text="Egypt" />
+                app:layout_constraintTop_toBottomOf="@id/tvInstrutions" />
 
             <TextView
                 android:id="@+id/btn_video"
@@ -146,12 +139,8 @@
                 app:layout_constraintTop_toTopOf="@id/tvInstrutions"
                 app:layout_constraintBottom_toBottomOf="@id/tvInstrutions"
                 app:drawableTint="@color/red" />
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </androidx.core.widget.NestedScrollView>
-
 
     <com.google.android.material.progressindicator.LinearProgressIndicator
         android:id="@+id/progresBar"

@@ -1,7 +1,8 @@
 package com.example.easymeals.network
 
-import com.example.easymeals.data.ModelPopularMeal
-import com.example.easymeals.data.ModelRandomMeal
+import com.example.easymeals.pojo.ModelAllCategories
+import com.example.easymeals.pojo.ModelPopularMeal
+import com.example.easymeals.pojo.ModelRandomMeal
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -19,5 +20,13 @@ interface ApiCalls {
         @Query("c") category: String
     ): ModelPopularMeal
 
+    @GET("categories.php")
+    suspend fun getAllCategories()
+            : ModelAllCategories
+
+    @GET("filter.php")
+    suspend fun getMealsByCategory(
+        @Query("c") category: String
+    ): ModelPopularMeal
 
 }
