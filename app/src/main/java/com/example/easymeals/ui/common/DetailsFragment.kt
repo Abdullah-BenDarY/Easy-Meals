@@ -50,7 +50,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(FragmentDetailsBind
                     finishLoading()
                     it.data?.let {
                         setContentInViews(it)
-                        uriVideo = it.strYoutube
+                        uriVideo = it.strYoutube!!
 
                     }
                 }

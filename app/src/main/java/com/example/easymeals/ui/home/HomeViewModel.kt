@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.easymeals.pojo.Category
 import com.example.easymeals.pojo.Meal
 import com.example.easymeals.pojo.PMeal
+import com.example.easymeals.repo.MyDataBase
 import com.example.easymeals.repo.Repository
 import com.example.medicalapp.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,7 +15,9 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(private val repository: Repository) : ViewModel() {
+class HomeViewModel @Inject constructor(private val repository: Repository ) : ViewModel() {
+
+
     private var _randomMealLiveData = MutableLiveData<Resource<Meal>>()
     val randomMealLiveData get() = _randomMealLiveData
 

@@ -45,6 +45,14 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_homeFragment_to_mealBottomSheetFragment"
+            app:destination="@id/mealBottomSheetFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/favorietsFragment"
@@ -61,6 +69,13 @@
         <action
             android:id="@+id/action_favorietsFragment_to_detailsFragment2"
             app:destination="@id/detailsFragment" />
+        <action
+            android:id="@+id/action_favorietsFragment_to_mealBottomSheetFragment"
+            app:destination="@id/mealBottomSheetFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/categoriesFragment"
@@ -106,5 +121,28 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_mealsFragment_to_mealBottomSheetFragment"
+            app:destination="@id/mealBottomSheetFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
+    <dialog
+        android:id="@+id/mealBottomSheetFragment"
+        android:name="com.example.easymeals.ui.bottomSheet.MealBottomSheetFragment"
+        android:label="fragment_meal_bottom_sheet"
+        tools:layout="@layout/fragment_meal_bottom_sheet" >
+        <action
+            android:id="@+id/action_mealBottomSheetFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </dialog>
 </navigation>

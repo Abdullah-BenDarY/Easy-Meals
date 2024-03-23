@@ -13,6 +13,10 @@ class AdapterPopularMeals : RecyclerView.Adapter<AdapterPopularMeals.Holder>() {
     fun setOnClick(onClick: (Int) -> Unit) {
         this.onClick = onClick}
 
+    private lateinit var onLongClick: (Int) -> Unit?
+    fun setOnLongClick(onLongClick: (Int) -> Unit) {
+        this.onLongClick = onLongClick}
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val binding = ItemPopularBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return Holder(binding)
@@ -32,6 +36,10 @@ class AdapterPopularMeals : RecyclerView.Adapter<AdapterPopularMeals.Holder>() {
             binding.root.setOnClickListener {
                 onClick.invoke(mealList!![layoutPosition].idMeal.toInt())
             }
+            binding.root.setOnLongClickListener{
+                onLongClick.invoke(mealList!![layoutPosition].idMeal.toInt())
+                true
+            }
         }
 
         fun bind(mealList: PMeal) {
@@ -40,6 +48,4 @@ class AdapterPopularMeals : RecyclerView.Adapter<AdapterPopularMeals.Holder>() {
                 .into(binding.imgMeal)
         }
     }
-
-
 }

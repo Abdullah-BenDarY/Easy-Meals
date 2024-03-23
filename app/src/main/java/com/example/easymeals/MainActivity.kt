@@ -8,7 +8,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class  MainActivity : AppCompatActivity() {
+ class  MainActivity : AppCompatActivity() {
 
      private var binding:ActivityMainBinding ?= null
     override fun onCreate(savedInstanceState: Bundle?) {

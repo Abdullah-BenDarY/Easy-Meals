@@ -41,15 +41,22 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     private var ide: Int? = null
     override fun onClicks() {
         binding.apply {
-            tvCategory.setOnClickListener {
-                findNavController().navigate(
-                    HomeFragmentDirections.actionHomeFragmentToCategoriesFragment()
-                )
-            }
             imgRandomMeal.setOnClickListener {
                 findNavController().navigate(
                     HomeFragmentDirections.actionHomeFragmentToDetailsFragment(ide!!))
             }
+                imgRandomMeal.setOnLongClickListener{
+                    findNavController().navigate(
+                        HomeFragmentDirections.actionHomeFragmentToMealBottomSheetFragment(ide!!))
+                 true
+                }
+        }
+
+        adapterPopularMeals.setOnLongClick {
+            findNavController()
+                .navigate(
+                    HomeFragmentDirections.actionHomeFragmentToMealBottomSheetFragment(it)
+                )
         }
         adapterPopularMeals.setOnClick {
             findNavController()
