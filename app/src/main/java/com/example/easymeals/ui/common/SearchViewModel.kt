@@ -16,21 +16,15 @@ import javax.inject.Inject
 class SearchViewModel  @Inject constructor(private val repository: Repository ) : ViewModel() {
     private val _searchMealsLiveData = MutableLiveData<Resource<List<Meal>?>>()
     val searchMealsLiveData get() = _searchMealsLiveData
-    private var saveStateCategory: Resource<List<Meal>?>?=null
 
 
     fun searchMeals(name : String) {
-        saveStateCategory?.let {
-            searchMealsLiveData.postValue(it)
-            return
-        }
 
         viewModelScope.launch (IO){
             try {
                 val response = repository.searshByName(name)
                 if (response.meals.isNotEmpty()) {
                     _searchMealsLiveData.postValue(Resource.Success(response.meals))
-                    saveStateCategory = Resource.Success(response.meals)
                 }else {
                     _searchMealsLiveData.postValue(Resource.Error(response.toString()))
                 }

@@ -3,6 +3,7 @@ package com.example.easymeals.ui.common
 import android.os.Bundle
 import android.view.View
 import androidx.core.widget.doAfterTextChanged
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -33,7 +34,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         super.onClicks()
         binding.apply {
             var searchJob : Job? = null
-            etSearchBox.doAfterTextChanged {
+            etSearchBox.doAfterTextChanged{
                 searchJob?.cancel()
                 searchJob = lifecycleScope.launch {
                     delay(500)
@@ -70,11 +71,11 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         }
     }
 
-    private fun searchFun(){
+    private fun searchFun() {
         val searchQuery = binding.etSearchBox.text.toString()
-        if(searchQuery.isNotEmpty()){
-            searchViewModel.searchMeals(searchQuery)
-        }
+            if (searchQuery.isNotEmpty()) {
+                searchViewModel.searchMeals(searchQuery)
+            }
     }
 
     override fun showLoading() {
