@@ -1,25 +1,22 @@
 package com.example.easymeals.ui.bottomSheet
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.easymeals.R
+import com.example.easymeals.base.BaseBottomSheet
 import com.example.easymeals.databinding.FragmentMealBottomSheetBinding
 import com.example.easymeals.pojo.Meal
 import com.example.easymeals.ui.common.DetailsViewModel
 import com.example.medicalapp.util.Resource
 import com.example.medicalapp.util.showToast
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MealBottomSheetFragment : BottomSheetDialogFragment() {
+class MealBottomSheetFragment :
+BaseBottomSheet<FragmentMealBottomSheetBinding>(FragmentMealBottomSheetBinding::inflate){
 
-    private var _binding: FragmentMealBottomSheetBinding? = null
-    private val binding get() = _binding!!
     private val detailsViewModel: DetailsViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,15 +24,8 @@ class MealBottomSheetFragment : BottomSheetDialogFragment() {
         setStyle(STYLE_NORMAL, R.style.AppBottomSheetDialogTheme)
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_meal_bottom_sheet, container, false)
-    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentMealBottomSheetBinding.bind(view)
         val myId = MealBottomSheetFragmentArgs.fromBundle(requireArguments()).id
         detailsViewModel.getMealsDetails(myId)
         showLoading()
@@ -44,7 +34,7 @@ class MealBottomSheetFragment : BottomSheetDialogFragment() {
     }
 
     private var ide: Int? = null
-    private fun onClicks() {
+    override fun onClicks() {
         binding.apply {
 
             tvReadMore.setOnClickListener {
@@ -54,9 +44,8 @@ class MealBottomSheetFragment : BottomSheetDialogFragment() {
         }
     }
 
-    private fun observe() {
-
-        detailsViewModel.mutableLiveData.observe(viewLifecycleOwner) {
+    override fun observe() {
+        detailsViewModel.detailsLiveData.observe(viewLifecycleOwner) {
             when (it) {
                 is Resource.Success -> {
                     finishLoading()
@@ -74,7 +63,7 @@ class MealBottomSheetFragment : BottomSheetDialogFragment() {
         }
     }
 
-    private fun showLoading() {
+    override fun showLoading() {
         binding.apply {
             progresBar.visibility = View.VISIBLE
             imgBtmSheet.visibility = View.INVISIBLE
@@ -84,7 +73,7 @@ class MealBottomSheetFragment : BottomSheetDialogFragment() {
             tvReadMore.visibility = View.INVISIBLE
         }
     }
-    private fun finishLoading() {
+    override fun finishLoading() {
         binding.apply {
             progresBar.visibility = View.INVISIBLE
             imgBtmSheet.visibility = View.VISIBLE
@@ -108,10 +97,5 @@ class MealBottomSheetFragment : BottomSheetDialogFragment() {
 
             }
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
     }
 }

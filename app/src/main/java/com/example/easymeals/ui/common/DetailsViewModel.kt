@@ -14,59 +14,29 @@ import javax.inject.Inject
 @HiltViewModel
 class DetailsViewModel @Inject constructor(private val repository: Repository) : ViewModel() {
 
-
-    private var _mutableLiveData = MutableLiveData<Resource<Meal>>()
-    val mutableLiveData get() = _mutableLiveData
-
+    private var _detailsLiveData = MutableLiveData<Resource<Meal>>()
+    val detailsLiveData get() = _detailsLiveData
+    private var saveStateCategory: Resource<Meal>?=null
 
     fun getMealsDetails(mealId: Int) {
+        saveStateCategory?.let {
+            detailsLiveData.postValue(it)
+            return
+        }
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val response = repository.getMealDetails(mealId)
                 if (response.meals.isNotEmpty()) {
-                    _mutableLiveData.postValue(Resource.Success(response.meals[0]))
+                    _detailsLiveData.postValue(Resource.Success(response.meals[0]))
+                    saveStateCategory = Resource.Success(response.meals[0])
+
                 } else {
-                    _mutableLiveData.postValue(Resource.Error(response.toString()))
+                    _detailsLiveData.postValue(Resource.Error(response.toString()))
                 }
 
             } catch (e: Exception) {
-                _mutableLiveData.postValue(Resource.Error("An error occurred: ${e.message}"))
+                _detailsLiveData.postValue(Resource.Error("An error occurred: ${e.message}"))
             }
         }
     }
-
-
 }
-
-//import androidx.lifecycle.MutableLiveData
-//import androidx.lifecycle.ViewModel
-//import androidx.lifecycle.viewModelScope
-//import com.example.easymeals.data.Meal
-//import com.example.easymeals.repo.Repository
-//import com.example.medicalapp.util.Resource
-//import kotlinx.coroutines.Dispatchers
-//import kotlinx.coroutines.launch
-//import javax.inject.Inject
-//
-//class DetailsViewModel @Inject constructor(private val repository: Repository) : ViewModel() {
-//
-//    private var _mutableLiveData = MutableLiveData<Resource<Meal>>()
-//    val mutableLiveData get() = _mutableLiveData
-//
-//    fun getRandomMeal(mealId: String) {
-//        viewModelScope.launch(Dispatchers.IO) {
-//            try {
-//                val response = repository.getRandom()
-//                val meal = response.meals.firstOrNull { it.idMeal == mealId }
-//                if (meal != null) {
-//                    _mutableLiveData.postValue(Resource.Success(meal))
-//                } else {
-//                    _mutableLiveData.postValue(Resource.Error(response.toString()))
-//                }
-//
-//            } catch (e: Exception) {
-//                _mutableLiveData.postValue(Resource.Error("An error occurred: ${e.message}"))
-//            }
-//        }
-//    }
-//}

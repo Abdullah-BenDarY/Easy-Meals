@@ -12,11 +12,4 @@ import com.example.easymeals.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class FavorietsFragment : BaseFragment<FragmentFavorietsBinding>(FragmentFavorietsBinding::inflate) {
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-    }
-
-}
+class FavorietsFragment : BaseFragment<FragmentFavorietsBinding>(FragmentFavorietsBinding::inflate)

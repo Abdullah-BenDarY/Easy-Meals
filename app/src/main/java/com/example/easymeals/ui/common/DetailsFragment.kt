@@ -44,7 +44,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(FragmentDetailsBind
     }
     override fun observe() {
         super.observe()
-        detailsViewModel.mutableLiveData.observe(viewLifecycleOwner) {
+        detailsViewModel.detailsLiveData.observe(viewLifecycleOwner) {
             when (it) {
                 is Resource.Success -> {
                     finishLoading()

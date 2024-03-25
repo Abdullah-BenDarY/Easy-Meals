@@ -1,8 +1,9 @@
-package com.example.easymeals
+package com.example.easymeals.base
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
+import com.example.easymeals.R
 import com.example.easymeals.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint

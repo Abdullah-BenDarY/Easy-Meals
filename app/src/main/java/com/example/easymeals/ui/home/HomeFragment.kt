@@ -41,10 +41,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     private var ide: Int? = null
     override fun onClicks() {
         binding.apply {
+            btnSearch.setOnClickListener{
+                    findNavController().navigate(
+                        HomeFragmentDirections.actionHomeFragmentToSearchFragment())
+            }
+
             imgRandomMeal.setOnClickListener {
                 findNavController().navigate(
                     HomeFragmentDirections.actionHomeFragmentToDetailsFragment(ide!!))
             }
+
                 imgRandomMeal.setOnLongClickListener{
                     findNavController().navigate(
                         HomeFragmentDirections.actionHomeFragmentToMealBottomSheetFragment(ide!!))
@@ -125,6 +131,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                 }
             }
         }
+
     }
 
     override fun showLoading() {
@@ -144,6 +151,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             rvCategory.visibility = View.VISIBLE
             imgRandomMeal.visibility = View.VISIBLE
             rvPopItems.visibility = View.VISIBLE
+
         }
     }
 
@@ -164,7 +172,3 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         binding.rvCategory.adapter = adapterCategories
     }
 }
-
-
-
-

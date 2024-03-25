@@ -20,7 +20,11 @@ class Repository @Inject constructor(private val api: ApiCalls){
     suspend fun getAllCategories() =
         api.getAllCategories()
 
-    suspend fun getMealsByCategory(category: String )=
+    suspend fun getMealsByCategory(category: String)=
         api.getMealsByCategory(category)
+
+    suspend fun searshByName(name: String) =
+        api.searshByName(name)
+
 }
 

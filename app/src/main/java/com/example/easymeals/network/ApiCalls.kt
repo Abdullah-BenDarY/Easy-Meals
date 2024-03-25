@@ -29,4 +29,9 @@ interface ApiCalls {
         @Query("c") category: String
     ): ModelPopularMeal
 
+    @GET("search.php")
+    suspend fun searshByName(
+        @Query("s") name: String
+    ): ModelRandomMeal
+
 }
