@@ -1,4 +1,4 @@
-package com.example.easymeals.ui.common
+package com.example.easymeals.ui.search
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -7,7 +7,6 @@ import com.example.easymeals.pojo.Meal
 import com.example.easymeals.repo.Repository
 import com.example.medicalapp.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
 import javax.inject.Inject

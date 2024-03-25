@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_marginStart="@dimen/_5sdp"
     android:layout_marginTop="@dimen/_5sdp"
-    tools:context=".ui.common.SearchFragment">
+    tools:context=".ui.search.SearchFragment">
 
     <EditText
         android:id="@+id/etSearchBox"
