@@ -5,7 +5,7 @@
 EasyFood is an app that makes making food easier and gives you full information about the selected meal including instructions of how to make that meal provided by a video.
 
 # Preview
-download apk app : https://www.mediafire.com/file/26zjehqaz5mjnds/app-debug.apk/file
+download apk app : https://www.mediafire.com/file/hv9gl08yfn1426r/Easy_Meals.apk/file
 ![Screenshot_20240325_093812](https://github.com/Abdullah-BenDarY/Easy-Meals/assets/141359699/8946c0ca-19c2-44b9-9e89-c4a8a9fe57c0)
 ![Screenshot_20240325_093932](https://github.com/Abdullah-BenDarY/Easy-Meals/assets/141359699/c545faa1-b178-43e2-a096-ed837eda7b0b)
 ![Screenshot_20240325_093932](https://github.com/Abdullah-BenDarY/Easy-Meals/assets/141359699/b44e9eb8-2a9d-4af1-9948-304d3942186d)
